@@ -43,6 +43,7 @@ Provides Python utilities for launch file integration:
 
 ## Integration Guide
 
+To create a new package with inbuilt venv support hector-ros2-pkg-create can be used by choosing the python-cmake template.
 To integrate virtual environment support with an existing ROS2 package:
 
 ### Step 1: Convert to ament_cmake Package
@@ -79,7 +80,7 @@ find_package(ros2_venv_scripts REQUIRED)
 ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
-install(PROGRAMS 
+install(PROGRAMS
   your_package_name/your_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
@@ -124,7 +125,7 @@ from ros2_venv_launch_util.launch_util import add_venv_to_current_env
 def generate_launch_description():
     pkg_share = get_package_share_directory('your_package_name')
     env = add_venv_to_current_env(pkg_share)
-    
+
     return LaunchDescription([
         Node(
             package='your_package_name',
@@ -139,4 +140,3 @@ def generate_launch_description():
 ## Authors
 
 - Marek Daniv (marekdaniv@googlemail.com)
-
