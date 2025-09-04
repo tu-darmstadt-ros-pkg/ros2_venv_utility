@@ -62,9 +62,9 @@ Update your `package.xml` to use `ament_cmake` build type:
 </export>
 ```
 
-### Step 2: Create CMakeLists.txt
+### Step 2: Create/ Change CMakeLists.txt
 
-Create a `CMakeLists.txt` with virtual environment integration:
+Create/ Change a `CMakeLists.txt` with virtual environment integration:
 
 ```cmake
 cmake_minimum_required(VERSION 3.8)
