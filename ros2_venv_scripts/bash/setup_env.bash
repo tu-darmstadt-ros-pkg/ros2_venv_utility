@@ -1,19 +1,26 @@
-REQ_FILE="requirements.txt"
 LOGFILE="setup_env.log"
+PROJECT_NAME=$(basename "$1")
 
-cd $1
+# <package_install_dir>/venv
+cd $1/venv
 
-#Clean up old virtual environment if it exists
-rm -rf "py_venv"
+# Clean up old virtual environment if it exists
+rm -rf "$PROJECT_NAME"
 
-# Venv has access to system site packages
-python3 -m venv "py_venv" --system-site-packages
+if [[$2 -eq "--isolated"]]; then
+    # Create a fully independent virtual environment
+    tee -a "$LOGFILE" "Creating an isolated virtual environment in $PROJECT_NAME"
+    python3 -m venv "$PROJECT_NAME"
+else
+    # Create a virtual environment with access to system site packages
+    python3 -m venv "$PROJECT_NAME" --system-site-packages
+fi
 
-if [[ ! -f "$REQ_FILE" ]]; then
-    tee -a "$LOGFILE" "Error: $REQ_FILE not found!"
+if [[ ! -f "requirements.txt" ]]; then
+    tee -a "$LOGFILE" "Error: $1/venv/requirements.txt not found!"
     exit 1
 fi
 
-source "py_venv/bin/activate"
-pip3 install -r $2 > "$LOGFILE"
+source "$PROJECT_NAME/bin/activate"
+pip3 install -r requirements.txt > "$LOGFILE"
 deactivate

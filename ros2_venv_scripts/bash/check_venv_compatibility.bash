@@ -1,14 +1,34 @@
 REQ_FILE="requirements.txt"
 LOGFILE="setup_env.log"
 
+ISOLATED=false
+
+# --- Option parsing loop ---
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --isolated)
+      ISOLATED=true
+      shift
+      ;;
+    --) # end of options
+      shift
+      break
+      ;;
+    *) # first non-option -> break and leave remaining as positional args
+      break
+      ;;
+  esac
+done
+
+# <package_install_dir>/venv
 cd $1
 
-if [[ ! -d "py_venv" ]]; then
-    echo "ERROR: No venv found at $1/py_venv"
+if [[ ! -d "$2" ]]; then
+    echo "ERROR: No venv found at $1/$2"
     exit 2
 fi
 
-source "py_venv/bin/activate"
+source "$2/bin/activate"
 # Capture dry-run output to check if any new or packages with different versions would be installed
 output=$(pip3 install --dry-run -r requirements.txt 2>&1)
 deactivate
