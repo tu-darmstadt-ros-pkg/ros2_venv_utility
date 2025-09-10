@@ -19,7 +19,8 @@ ament_index_register_resource(
 install(
   PROGRAMS "${CMAKE_SOURCE_DIR}/bash/setup_env.bash"
            "${CMAKE_SOURCE_DIR}/bash/check_venv_compatibility.bash"
-           "${CMAKE_SOURCE_DIR}/cmake/post_install_venv.cmake"
+           "${CMAKE_SOURCE_DIR}/cmake/post_install_isolated_venv.cmake"
+           "${CMAKE_SOURCE_DIR}/cmake/post_install_system_visible_venv.cmake"
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/${PROJECT_NAME}/scripts)
 
 ament_package()
