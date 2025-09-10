@@ -27,7 +27,7 @@ Provides Python utilities for launch file integration:
 1. Clone this repository into your ROS2 workspace:
    ```bash
    cd ~/your_ros2_ws/src
-   git clone git@git.sim.informatik.tu-darmstadt.de:hector/ros2_venv_utility.git
+   git clone git@github.com:tu-darmstadt-ros-pkg/ros2_venv_utility.git
    ```
 
 2. Build the packages:
