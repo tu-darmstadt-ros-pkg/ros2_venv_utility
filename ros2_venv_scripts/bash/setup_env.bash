@@ -7,7 +7,7 @@ cd $1/venv
 # Clean up old virtual environment if it exists
 rm -rf "$PROJECT_NAME"
 
-if [[$2 -eq "--isolated"]]; then
+if [[ $2 -eq "--isolated" ]]; then
     # Create a fully independent virtual environment
     tee -a "$LOGFILE" "Creating an isolated virtual environment in $PROJECT_NAME"
     python3 -m venv "$PROJECT_NAME"
